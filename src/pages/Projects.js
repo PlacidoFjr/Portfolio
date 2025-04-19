@@ -111,7 +111,7 @@ const projects = [
     description: 'Consultoria e montagem de PCs para empresas que estão começando. A SetupTech ajuda o seu negócio a começar com o pé direito!',
     image: '/imagens/setup-tech.png',
     github: 'https://github.com/PlacidoFjr',
-    live: '#'
+    live: '/setuptech'  // Atualizado para apontar para a nova página
   },
   {
     title: 'Suporte Técnico TI',
