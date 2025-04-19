@@ -23,7 +23,7 @@ const Content = styled(motion.div)`
   max-width: 1000px;
   margin: 0 auto;
   padding: 0 2rem;
-  display: flex;
+  display: flex;  
   flex-direction: column;
   align-items: center;
 `;
