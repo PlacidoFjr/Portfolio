@@ -83,6 +83,14 @@ const NavLink = styled(Link)`
   }
 `;
 
+const navLinks = [
+  { name: 'Home', path: '/' },
+  { name: 'Projetos', path: '/projects' },
+  { name: 'Sobre', path: '/about' },
+  { name: 'Contato', path: '/contact' },
+  { name: 'SetupTech', path: '/setuptech' }
+];
+
 function Navbar() {
   return (
     <Nav
@@ -93,10 +101,11 @@ function Navbar() {
       <NavContent>
         <Logo to="/">PJ</Logo>
         <NavLinks>
-          <NavLink to="/">Home</NavLink>
-          <NavLink to="/projects">Projetos</NavLink>
-          <NavLink to="/about">Sobre</NavLink>
-          <NavLink to="/contact">Contato</NavLink>
+          {navLinks.map((link, index) => (
+            <NavLink key={index} to={link.path}>
+              {link.name}
+            </NavLink>
+          ))}
         </NavLinks>
       </NavContent>
     </Nav>
