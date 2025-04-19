@@ -7,16 +7,35 @@ import { FaGithub, FaFolder, FaEnvelope } from 'react-icons/fa';
 import { useCallback } from 'react';
 import { loadSlim } from "tsparticles-slim";
 
+const ParticlesBackground = styled(Particles)`
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  top: 0;
+  left: 0;
+  z-index: 1;
+`;
+
+const Content = styled(motion.div)`
+  position: relative;
+  z-index: 2;
+  text-align: center;
+  max-width: 1000px;
+  margin: 0 auto;
+  padding: 0 2rem;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+`;
+
 const HomeContainer = styled.div`
   min-height: 100vh;
   display: flex;
   flex-direction: column;
   justify-content: center;
   padding: 6rem 1rem;
-
-  @media (max-width: 768px) {
-    padding: 4rem 1rem;
-  }
+  position: relative;
+  background: #0a192f;
 `;
 
 const Name = styled(motion.h1)`
@@ -34,7 +53,11 @@ const Title = styled(motion.h2)`
 const Description = styled(motion.p)`
   font-size: clamp(1rem, 3vw, 1.2rem);
   max-width: 600px;
-  margin-bottom: 2rem;
+  margin: 0 auto 2rem auto; /* Center the text block */
+  color: #ccd6f6; /* Lighter color for better visibility */
+  line-height: 1.5; /* Improved line spacing */
+  font-weight: 400; /* Slightly bolder */
+  text-align: center; /* Garantir alinhamento do texto */
 `;
 
 const ButtonContainer = styled(motion.div)`
