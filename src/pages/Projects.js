@@ -1,6 +1,6 @@
 import styled from 'styled-components';
 import { motion } from 'framer-motion';
-import { FaExternalLinkAlt, FaGithub, FaMapMarkerAlt, FaPhone } from 'react-icons/fa';
+import { FaExternalLinkAlt, FaGithub } from 'react-icons/fa';
 import Layout from '../components/Layout';
 import { projects } from '../data/projects';
 import { skills } from '../data/skills';
