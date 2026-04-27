@@ -1,92 +1,142 @@
 import styled from 'styled-components';
 import { motion } from 'framer-motion';
 import Particles from 'react-tsparticles';
-import { loadFull } from 'tsparticles';
-import { Link } from 'react-router-dom';
-import { FaGithub, FaFolder, FaEnvelope } from 'react-icons/fa';
 import { useCallback } from 'react';
 import { loadSlim } from "tsparticles-slim";
+import { FaGithub, FaLinkedin, FaInstagram, FaArrowRight } from 'react-icons/fa';
+import { Link } from 'react-router-dom';
+import Layout from '../components/Layout';
+
+const HomeContainer = styled.div`
+  min-height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  position: relative;
+  background: ${props => props.theme.colors.background};
+  overflow: hidden;
+  padding: 2rem;
+`;
 
 const ParticlesBackground = styled(Particles)`
   position: absolute;
-  width: 100%;
-  height: 100%;
   top: 0;
   left: 0;
+  width: 100%;
+  height: 100%;
   z-index: 1;
 `;
 
 const Content = styled(motion.div)`
   position: relative;
   z-index: 2;
-  text-align: center;
   max-width: 1000px;
-  margin: 0 auto;
-  padding: 0 2rem;
-  display: flex;  
-  flex-direction: column;
-  align-items: center;
+  width: 100%;
 `;
 
-const HomeContainer = styled.div`
-  min-height: 100vh;
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  padding: 6rem 1rem;
-  position: relative;
-  background: #0a192f;
+const Greeting = styled(motion.p)`
+  color: ${props => props.theme.colors.primary};
+  font-family: ${props => props.theme.fonts.mono};
+  font-size: clamp(1rem, 2vw, 1.2rem);
+  margin-bottom: 1.5rem;
 `;
 
 const Name = styled(motion.h1)`
-  font-size: clamp(2.5rem, 8vw, 4.5rem);
-  color: #64ffda;
+  font-size: clamp(2.5rem, 8vw, 5rem);
+  color: ${props => props.theme.colors.white};
+  font-weight: 700;
+  line-height: 1.1;
   margin-bottom: 1rem;
 `;
 
-const Title = styled(motion.h2)`
-  font-size: clamp(1.2rem, 4vw, 2rem);
-  color: #8892b0;
+const Subtitle = styled(motion.h2)`
+  font-size: clamp(2rem, 6vw, 4rem);
+  color: ${props => props.theme.colors.textSecondary};
+  font-weight: 700;
+  line-height: 1.1;
   margin-bottom: 2rem;
 `;
 
 const Description = styled(motion.p)`
-  font-size: clamp(1rem, 3vw, 1.2rem);
+  color: ${props => props.theme.colors.textSecondary};
+  font-size: clamp(1rem, 2vw, 1.2rem);
+  line-height: 1.6;
   max-width: 600px;
-  margin: 0 auto 2rem auto; /* Center the text block */
-  color: #ccd6f6; /* Lighter color for better visibility */
-  line-height: 1.5; /* Improved line spacing */
-  font-weight: 400; /* Slightly bolder */
-  text-align: center; /* Garantir alinhamento do texto */
+  margin-bottom: 3rem;
 `;
 
-const ButtonContainer = styled(motion.div)`
+const ButtonGroup = styled(motion.div)`
   display: flex;
   gap: 1.5rem;
-  margin-top: 3rem;
-  justify-content: center;
   flex-wrap: wrap;
-  padding: 0 1rem;
 `;
 
-const IconButton = styled(motion.a)`
+const PrimaryButton = styled(Link)`
   display: flex;
   align-items: center;
   gap: 0.8rem;
-  color: #64ffda;
-  font-size: clamp(0.9rem, 2vw, 1.1rem);
-  padding: 0.8rem 1.5rem;
-  border: 2px solid #64ffda;
-  border-radius: 4px;
-  transition: all 0.3s ease;
+  padding: 1.2rem 2rem;
   background: transparent;
+  color: ${props => props.theme.colors.primary};
+  border: 1px solid ${props => props.theme.colors.primary};
+  border-radius: 4px;
+  font-weight: 500;
+  font-family: ${props => props.theme.fonts.mono};
+  transition: ${props => props.theme.transitions.default};
 
   &:hover {
     background: rgba(100, 255, 218, 0.1);
-    transform: translateY(-2px);
-    box-shadow: 0 4px 8px rgba(100, 255, 218, 0.1);
+    transform: translateY(-3px);
+  }
+
+  svg {
+    transition: transform 0.3s ease;
+  }
+
+  &:hover svg {
+    transform: translateX(5px);
   }
 `;
+
+const SocialLinks = styled(motion.div)`
+  display: flex;
+  gap: 2rem;
+  margin-top: 4rem;
+`;
+
+const SocialIcon = styled.a`
+  color: ${props => props.theme.colors.textSecondary};
+  font-size: 1.8rem;
+  transition: ${props => props.theme.transitions.default};
+
+  &:hover {
+    color: ${props => props.theme.colors.primary};
+    transform: translateY(-3px);
+  }
+`;
+
+const containerVariants = {
+  hidden: { opacity: 0 },
+  visible: {
+    opacity: 1,
+    transition: {
+      staggerChildren: 0.1,
+      delayChildren: 0.3,
+    },
+  },
+};
+
+const itemVariants = {
+  hidden: { opacity: 0, y: 20 },
+  visible: {
+    opacity: 1,
+    y: 0,
+    transition: {
+      duration: 0.5,
+      ease: "easeOut",
+    },
+  },
+};
 
 function Home() {
   const particlesInit = useCallback(async engine => {
@@ -94,107 +144,93 @@ function Home() {
   }, []);
 
   const particlesConfig = {
-    background: {
-      opacity: 0
-    },
+    background: { opacity: 0 },
     particles: {
-      color: {
-        value: "#64ffda",
-      },
+      color: { value: "#64ffda" },
       links: {
         color: "#64ffda",
         distance: 150,
         enable: true,
         opacity: 0.2,
-        width: 1,
-      },
-      number: {
-        value: 30,
-        density: {
-          enable: true,
-          value_area: 800,
-        },
+        width: 1
       },
       move: {
         enable: true,
         speed: 1,
         direction: "none",
-        random: true,
+        random: false,
         straight: false,
-        outModes: {
-          default: "bounce",
-        },
+        out_mode: "out",
+        bounce: false,
       },
-      size: {
-        value: 3,
+      number: {
+        value: 80,
+        density: { enable: true, area: 800 }
       },
-      opacity: {
-        value: 0.3,
-      },
+      opacity: { value: 0.3 },
+      shape: { type: "circle" },
+      size: { value: { min: 1, max: 3 } }
     },
+    interactivity: {
+      events: {
+        onHover: { enable: true, mode: "grab" },
+        onClick: { enable: true, mode: "push" }
+      },
+      modes: {
+        grab: { distance: 140, line_linked: { opacity: 1 } },
+        push: { particles_nb: 4 }
+      }
+    },
+    retina_detect: true
   };
 
   return (
-    <HomeContainer>
-      <ParticlesBackground init={particlesInit} options={particlesConfig} />
-      <Content
-        initial={{ opacity: 0, y: 20 }}
-        animate={{ opacity: 1, y: 0 }}
-        transition={{ duration: 0.8 }}
-      >
-        <Name
-          initial={{ opacity: 0, y: -20 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.5, delay: 0.2 }}
-        >
-          Plácido Junior
-        </Name>
-        <Title
-          initial={{ opacity: 0, y: -20 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.5, delay: 0.4 }}
-        >
-          💻 Desenvolvedor Full Stack | Consultor em TI
-        </Title>
-        <Description
-          initial={{ opacity: 0 }}
-          animate={{ opacity: 1 }}
-          transition={{ duration: 0.5, delay: 0.6 }}
-        >
-          Transformando ideias em soluções digitais com React, Node.js e Python.
-        </Description>
-        <ButtonContainer
-          initial={{ opacity: 0, y: 20 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.5, delay: 0.8 }}
-        >
-          <IconButton 
-            href="https://github.com/PlacidoFjr" 
-            target="_blank"
-            whileHover={{ scale: 1.05 }}
-            whileTap={{ scale: 0.95 }}
-          >
-            <FaGithub /> GitHub
-          </IconButton>
-          <IconButton 
-            as={Link} 
-            to="/projects"
-            whileHover={{ scale: 1.05 }}
-            whileTap={{ scale: 0.95 }}
-          >
-            <FaFolder /> Projetos
-          </IconButton>
-          <IconButton 
-            as={Link} 
-            to="/contact"
-            whileHover={{ scale: 1.05 }}
-            whileTap={{ scale: 0.95 }}
-          >
-            <FaEnvelope /> Contato
-          </IconButton>
-        </ButtonContainer>
-      </Content>
-    </HomeContainer>
+    <Layout>
+      <HomeContainer>
+        <ParticlesBackground
+          id="tsparticles"
+          init={particlesInit}
+          options={particlesConfig}
+        />
+        
+        <Content variants={containerVariants}>
+          <Greeting variants={itemVariants}>
+            Olá, meu nome é
+          </Greeting>
+          
+          <Name variants={itemVariants}>
+            Placido Junior.
+          </Name>
+          
+          <Subtitle variants={itemVariants}>
+            Gestor na Orbe Insights & Especialista em TI.
+          </Subtitle>
+          
+          <Description variants={itemVariants}>
+            Sou o Placido Francisco da Silva Junior, profissional de tecnologia focado em 
+            gestão operacional e desenvolvimento de soluções inteligentes para o mercado contábil e corporativo.
+          </Description>
+          
+          <ButtonGroup variants={itemVariants}>
+            <PrimaryButton to="/projects">
+              Ver meus projetos <FaArrowRight />
+            </PrimaryButton>
+          </ButtonGroup>
+
+          <SocialLinks variants={itemVariants}>
+            <SocialIcon href="https://github.com/PlacidoFjr" target="_blank" rel="noopener noreferrer" title="GitHub">
+              <FaGithub />
+            </SocialIcon>
+            <SocialIcon href="https://www.linkedin.com/in/placido-francisco-da-silva-junior-a09765242/" target="_blank" rel="noopener noreferrer" title="LinkedIn">
+              <FaLinkedin />
+            </SocialIcon>
+            <SocialIcon href="https://www.instagram.com/placido_sjr/" target="_blank" rel="noopener noreferrer" title="Instagram">
+              <FaInstagram />
+            </SocialIcon>
+          </SocialLinks>
+        </Content>
+      </HomeContainer>
+    </Layout>
   );
 }
 

@@ -1,28 +1,55 @@
 import styled from 'styled-components';
 import { motion } from 'framer-motion';
-import { FaExternalLinkAlt, FaFolder, FaEnvelope, FaMapMarkerAlt, FaPhone, FaGithub } from 'react-icons/fa';
-import { SiJavascript, SiReact, SiNodedotjs, SiPython } from 'react-icons/si';
+import { FaExternalLinkAlt, FaGithub, FaMapMarkerAlt, FaPhone } from 'react-icons/fa';
+import Layout from '../components/Layout';
+import { projects } from '../data/projects';
+import { skills } from '../data/skills';
 
 const ProjectsContainer = styled.div`
   min-height: 100vh;
-  padding: 6rem 2rem 2rem;
-  background: #0a192f;
-  color: white;
+  padding: 8rem 2rem 4rem;
+  background: ${props => props.theme.colors.background};
+`;
+
+const SectionTitle = styled(motion.h2)`
+  color: ${props => props.theme.colors.primary};
+  font-size: 2.5rem;
+  text-align: center;
+  margin-bottom: 3rem;
+  position: relative;
+
+  &::after {
+    content: '';
+    display: block;
+    width: 60px;
+    height: 2px;
+    background: ${props => props.theme.colors.primary};
+    margin: 1rem auto;
+  }
+`;
+
+const ProjectsGrid = styled.div`
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+  gap: 2rem;
+  max-width: 1200px;
+  margin: 0 auto;
 `;
 
 const ProjectCard = styled(motion.div)`
-  background: rgba(255, 255, 255, 0.05);
-  border-radius: 10px;
-  padding: 1.5rem;
-  backdrop-filter: blur(10px);
+  background: ${props => props.theme.colors.backgroundLight};
+  border-radius: 12px;
+  overflow: hidden;
   border: 1px solid rgba(100, 255, 218, 0.1);
+  height: 100%;
   display: flex;
   flex-direction: column;
-  height: 100%;
-  text-align: center; /* Centraliza o texto */
-  
-  @media (max-width: 768px) {
-    padding: 1rem;
+  transition: ${props => props.theme.transitions.default};
+
+  &:hover {
+    transform: translateY(-10px);
+    box-shadow: 0 20px 30px -15px rgba(2, 12, 27, 0.7);
+    border-color: ${props => props.theme.colors.primary};
   }
 `;
 
@@ -30,53 +57,73 @@ const ProjectImage = styled.img`
   width: 100%;
   height: 200px;
   object-fit: cover;
-  border-radius: 5px;
-  margin-bottom: 1.5rem;
+  border-bottom: 1px solid rgba(100, 255, 218, 0.1);
+`;
+
+const ProjectContent = styled.div`
+  padding: 1.5rem;
+  flex-grow: 1;
+  display: flex;
+  flex-direction: column;
 `;
 
 const ProjectTitle = styled.h3`
-  color: #64ffda;
+  color: ${props => props.theme.colors.primary};
   margin-bottom: 1rem;
   font-size: 1.5rem;
-  line-height: 1.3;
 `;
 
-const ProjectsGrid = styled.div`
-  display: grid;
-  grid-template-columns: repeat(3, 1fr);
-  gap: 2.5rem;
-  padding: 2rem 0;
+const ProjectDescription = styled.p`
+  color: ${props => props.theme.colors.textSecondary};
+  font-size: 1rem;
+  line-height: 1.6;
+  margin-bottom: 1rem;
+`;
+
+const TagList = styled.ul`
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.6rem;
+  margin-bottom: 1.5rem;
+  padding: 0;
+  list-style: none;
+`;
+
+const Tag = styled.li`
+  color: ${props => props.theme.colors.primary};
+  font-family: ${props => props.theme.fonts.mono};
+  font-size: 0.75rem;
+  background: rgba(100, 255, 218, 0.1);
+  padding: 0.2rem 0.6rem;
+  border-radius: 4px;
 `;
 
 const ProjectLinks = styled.div`
   display: flex;
-  gap: 1rem;
+  gap: 1.5rem;
   margin-top: auto;
-  padding-top: 1.5rem;
-  justify-content: center; /* Centraliza os ícones */
 `;
 
 const IconLink = styled.a`
-  color: #8892b0;
-  font-size: 1.5rem;
-  transition: all 0.3s ease;
-  
+  color: ${props => props.theme.colors.text};
+  font-size: 1.3rem;
+  transition: ${props => props.theme.transitions.default};
+
   &:hover {
-    color: #64ffda;
-    transform: translateY(-2px);
+    color: ${props => props.theme.colors.primary};
   }
 `;
 
 const SkillsSection = styled.section`
-  max-width: 1200px;
-  margin: 4rem auto;
+  max-width: 1000px;
+  margin: 6rem auto 2rem;
 `;
 
 const SkillsGrid = styled.div`
   display: grid;
-  grid-template-columns: repeat(4, 1fr);
+  grid-template-columns: repeat(auto-fit, minmax(120px, 1fr));
   gap: 2rem;
-  margin-top: 2rem;
+  margin-top: 3rem;
 `;
 
 const SkillCard = styled(motion.div)`
@@ -85,146 +132,98 @@ const SkillCard = styled(motion.div)`
   align-items: center;
   gap: 1rem;
   padding: 1.5rem;
-  background: rgba(255, 255, 255, 0.05);
-  border-radius: 10px;
+  background: ${props => props.theme.colors.backgroundLight};
+  border-radius: 12px;
   border: 1px solid rgba(100, 255, 218, 0.1);
-`;
+  transition: ${props => props.theme.transitions.default};
 
-const ProjectDetails = styled.div`
-  display: flex;
-  flex-direction: column;
-  gap: 0.5rem;
-  margin-top: 1rem;
-  color: #8892b0;
-  font-size: 0.9rem;
-`;
-
-const DetailItem = styled.div`
-  display: flex;
-  align-items: center;
-  gap: 0.5rem;
-`;
-
-const projects = [
-  {
-    title: 'SetupTech',
-    description: 'Consultoria e montagem de PCs para empresas que estão começando. A SetupTech ajuda o seu negócio a começar com o pé direito!',
-    image: '/imagens/setup-tech.png',
-    github: 'https://github.com/PlacidoFjr',
-    live: '/setuptech'  // Atualizado para apontar para a nova página
-  },
-  {
-    title: 'Suporte Técnico TI',
-    description: 'Parou, travou o Junior chegou!! Atendimento especializado com suporte remoto 24/7 e presencial quando necessário.',
-    image: '/imagens/suporte-tecnico.png',
-    github: 'https://github.com/PlacidoFjr',
-    live: 'https://suportepjr.vercel.app/'
-  },
-  {
-    title: 'Burguer Website',
-    description: 'O sabor vai até você! Nossa paixão por hambúrgueres artesanais nos inspira a criar combinações únicas e deliciosas.',
-    image: '/imagens/burguer-site.png',
-    github: 'https://github.com/PlacidoFjr',
-    live: 'https://site-burguer-dbk33xl65-placidofjrs-projects.vercel.app/'
+  &:hover {
+    border-color: ${props => props.theme.colors.primary};
+    transform: scale(1.05);
   }
-];
 
-const skills = [
-  { name: "JavaScript", icon: SiJavascript, color: "#F7DF1E" },
-  { name: "React", icon: SiReact, color: "#61DAFB" },
-  { name: "Node.js", icon: SiNodedotjs, color: "#339933" },
-  { name: "Python", icon: SiPython, color: "#3776AB" },
-];
+  span {
+    color: ${props => props.theme.colors.text};
+    font-size: 0.9rem;
+    font-family: ${props => props.theme.fonts.mono};
+  }
+`;
 
-// Corrigir a estrutura do componente Projects para usar o ProjectCard importado
 function Projects() {
   return (
-    <ProjectsContainer>
-      <motion.h1
-        initial={{ opacity: 0, y: -20 }}
-        animate={{ opacity: 1, y: 0 }}
-        transition={{ duration: 0.5 }}
-        style={{ textAlign: 'center', marginBottom: '3rem' }}
-      >
-        Meus Projetos
-      </motion.h1>
-
-      <ProjectsGrid>
-        {projects.map((project, index) => (
-          <ProjectCard
-            key={index}
-            initial={{ opacity: 0, y: 20 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.5, delay: index * 0.1 }}
-            whileHover={{ y: -10, transition: { duration: 0.2 } }}
-          >
-            <ProjectImage src={project.image} alt={project.title} />
-            <ProjectTitle>{project.title}</ProjectTitle>
-            <p>{project.description}</p>
-            {project.location && (
-              <ProjectDetails>
-                <DetailItem>
-                  <FaMapMarkerAlt />
-                  <span>{project.location}</span>
-                </DetailItem>
-                {project.contact && (
-                  <DetailItem>
-                    <FaPhone />
-                    <span>{project.contact}</span>
-                  </DetailItem>
-                )}
-                {project.services && (
-                  <div style={{ marginTop: '1rem' }}>
-                    {project.services.map((service, idx) => (
-                      <DetailItem key={idx} style={{ marginTop: '0.5rem' }}>
-                        <span>• {service}</span>
-                      </DetailItem>
-                    ))}
-                  </div>
-                )}
-              </ProjectDetails>
-            )}
-            <ProjectLinks>
-              {project.github && project.github !== '#' && (
-                <IconLink href={project.github} target="_blank" rel="noopener noreferrer">
-                  <FaGithub />
-                </IconLink>
-              )}
-              {project.live && project.live !== '#' && (
-                <IconLink href={project.live} target="_blank" rel="noopener noreferrer">
-                  <FaExternalLinkAlt />
-                </IconLink>
-              )}
-            </ProjectLinks>
-          </ProjectCard>
-        ))}
-      </ProjectsGrid>
-
-      <SkillsSection>
-        <motion.h2
-          initial={{ opacity: 0 }}
-          animate={{ opacity: 1 }}
+    <Layout>
+      <ProjectsContainer>
+        <SectionTitle
+          initial={{ opacity: 0, y: -20 }}
+          animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.5 }}
-          style={{ textAlign: 'center', color: '#64ffda' }}
         >
-          Minhas Habilidades
-        </motion.h2>
-        <SkillsGrid>
-          {skills.map((skill, index) => (
-            <SkillCard
+          Meus Projetos
+        </SectionTitle>
+
+        <ProjectsGrid>
+          {projects.map((project, index) => (
+            <ProjectCard
               key={index}
-              initial={{ opacity: 0, scale: 0.9 }}
-              animate={{ opacity: 1, scale: 1 }}
-              transition={{ duration: 0.3, delay: index * 0.1 }}
-              whileHover={{ scale: 1.1 }}
+              initial={{ opacity: 0, y: 20 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true }}
+              transition={{ duration: 0.5, delay: index * 0.1 }}
             >
-              <skill.icon size={40} color={skill.color} />
-              <span>{skill.name}</span>
-            </SkillCard>
+              <ProjectImage src={project.image} alt={project.title} />
+              <ProjectContent>
+                <ProjectTitle>{project.title}</ProjectTitle>
+                <ProjectDescription>{project.description}</ProjectDescription>
+                {project.tags && (
+                  <TagList>
+                    {project.tags.map((tag, i) => (
+                      <Tag key={i}>{tag}</Tag>
+                    ))}
+                  </TagList>
+                )}
+                <ProjectLinks>
+                  {project.github && project.github !== '#' && (
+                    <IconLink href={project.github} target="_blank" rel="noopener noreferrer" title="GitHub">
+                      <FaGithub />
+                    </IconLink>
+                  )}
+                  {project.live && project.live !== '#' && (
+                    <IconLink href={project.live} target="_blank" rel="noopener noreferrer" title="Ver Projeto">
+                      <FaExternalLinkAlt />
+                    </IconLink>
+                  )}
+                </ProjectLinks>
+              </ProjectContent>
+            </ProjectCard>
           ))}
-        </SkillsGrid>
-      </SkillsSection>
-    </ProjectsContainer>
+        </ProjectsGrid>
+
+        <SkillsSection>
+          <SectionTitle
+            initial={{ opacity: 0, y: -20 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            transition={{ duration: 0.5 }}
+          >
+            Minhas Habilidades
+          </SectionTitle>
+          <SkillsGrid>
+            {skills.map((skill, index) => (
+              <SkillCard
+                key={index}
+                initial={{ opacity: 0, scale: 0.9 }}
+                whileInView={{ opacity: 1, scale: 1 }}
+                viewport={{ once: true }}
+                transition={{ duration: 0.3, delay: index * 0.05 }}
+              >
+                <skill.icon size={40} color={skill.color} />
+                <span>{skill.name}</span>
+              </SkillCard>
+            ))}
+          </SkillsGrid>
+        </SkillsSection>
+      </ProjectsContainer>
+    </Layout>
   );
 }
 
