@@ -2,7 +2,7 @@ import { useState, useRef } from 'react';
 import styled from 'styled-components';
 import { motion, AnimatePresence } from 'framer-motion';
 import emailjs from '@emailjs/browser';
-import { FaPaperPlane, FaCheckCircle, FaExclamationCircle, FaWhatsapp } from 'react-icons/fa';
+import { FaPaperPlane, FaCheckCircle, FaExclamationCircle } from 'react-icons/fa';
 import Layout from '../components/Layout';
 
 const ContactContainer = styled.div`
@@ -28,27 +28,13 @@ const Subtitle = styled(motion.p)`
   max-width: 500px;
 `;
 
-const DirectLink = styled(motion.a)`
-  display: inline-flex;
-  align-items: center;
-  gap: 0.65rem;
-  margin: -1.5rem 0 2.5rem;
-  padding: 0.8rem 1rem;
-  color: ${props => props.theme.colors.primary};
-  border: 1px solid rgba(232, 180, 93, 0.35);
-  border-radius: 999px;
-  font-weight: 600;
-
-  &:hover { background: rgba(232, 180, 93, 0.08); transform: translateY(-2px); }
-`;
-
 const ContactForm = styled(motion.form)`
   width: 100%;
   max-width: 600px;
   background: ${props => props.theme.colors.backgroundLight};
   padding: 2.5rem;
   border-radius: 12px;
-  border: 1px solid rgba(232, 180, 93, 0.14);
+  border: 1px solid rgba(100, 255, 218, 0.1);
   display: flex;
   flex-direction: column;
   gap: 1.5rem;
@@ -69,7 +55,7 @@ const Label = styled.label`
 const Input = styled.input`
   padding: 1rem;
   background: ${props => props.theme.colors.background};
-  border: 1px solid rgba(232, 180, 93, 0.22);
+  border: 1px solid rgba(100, 255, 218, 0.2);
   border-radius: 4px;
   color: ${props => props.theme.colors.text};
   font-size: 1rem;
@@ -78,8 +64,8 @@ const Input = styled.input`
   &:focus {
     outline: none;
     border-color: ${props => props.theme.colors.primary};
-    background: rgba(232, 180, 93, 0.05);
-    box-shadow: 0 0 10px rgba(232, 180, 93, 0.1);
+    background: rgba(100, 255, 218, 0.05);
+    box-shadow: 0 0 10px rgba(100, 255, 218, 0.1);
   }
 
   &:invalid:not(:placeholder-shown) {
@@ -90,7 +76,7 @@ const Input = styled.input`
 const TextArea = styled.textarea`
   padding: 1rem;
   background: ${props => props.theme.colors.background};
-  border: 1px solid rgba(232, 180, 93, 0.22);
+  border: 1px solid rgba(100, 255, 218, 0.2);
   border-radius: 4px;
   color: ${props => props.theme.colors.text};
   font-size: 1rem;
@@ -101,8 +87,8 @@ const TextArea = styled.textarea`
   &:focus {
     outline: none;
     border-color: ${props => props.theme.colors.primary};
-    background: rgba(232, 180, 93, 0.05);
-    box-shadow: 0 0 10px rgba(232, 180, 93, 0.1);
+    background: rgba(100, 255, 218, 0.05);
+    box-shadow: 0 0 10px rgba(100, 255, 218, 0.1);
   }
 
   &:invalid:not(:placeholder-shown) {
@@ -127,7 +113,7 @@ const SubmitButton = styled(motion.button)`
   transition: ${props => props.theme.transitions.default};
 
   &:hover:not(:disabled) {
-    background: rgba(232, 180, 93, 0.1);
+    background: rgba(100, 255, 218, 0.1);
     transform: translateY(-2px);
   }
 
@@ -202,18 +188,8 @@ function Contact() {
           animate={{ opacity: 1 }}
           transition={{ duration: 0.5, delay: 0.2 }}
         >
-          Tem um projeto, uma oportunidade ou um problema de tecnologia para resolver? Conte um pouco do contexto e eu retorno com os próximos passos.
+          Estou aberto a oportunidades, projetos e parcerias. Se quiser conversar, envie uma mensagem.
         </Subtitle>
-        <DirectLink
-          href="https://wa.me/5571981525641"
-          target="_blank"
-          rel="noopener noreferrer"
-          initial={{ opacity: 0 }}
-          animate={{ opacity: 1 }}
-          transition={{ delay: 0.25 }}
-        >
-          <FaWhatsapp /> Prefere WhatsApp? Fale diretamente
-        </DirectLink>
 
         <ContactForm
           ref={formRef}

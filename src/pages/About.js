@@ -32,7 +32,7 @@ const SectionTitle = styled(motion.h2)`
     display: block;
     width: 200px;
     height: 1px;
-    background: rgba(232, 180, 93, 0.22);
+    background: rgba(100, 255, 218, 0.2);
     margin-left: 1rem;
   }
 `;
@@ -117,16 +117,67 @@ const ProfileImage = styled.img`
   }
 `;
 
+const ExperienceSection = styled.section`
+  max-width: 900px;
+  margin: 5rem auto 0;
+`;
+
+const ExperienceList = styled.div`
+  border-left: 1px solid rgba(100, 255, 218, 0.25);
+  margin-left: 0.35rem;
+`;
+
+const ExperienceItem = styled(motion.article)`
+  position: relative;
+  padding: 0 0 2.5rem 2rem;
+
+  &::before {
+    content: '';
+    position: absolute;
+    left: -5px;
+    top: 0.45rem;
+    width: 9px;
+    height: 9px;
+    border-radius: 50%;
+    background: ${props => props.theme.colors.background};
+    border: 2px solid ${props => props.theme.colors.primary};
+  }
+
+  h3 {
+    color: ${props => props.theme.colors.text};
+    font-size: 1.15rem;
+    margin-bottom: 0.25rem;
+  }
+
+  .company {
+    color: ${props => props.theme.colors.primary};
+    font-family: ${props => props.theme.fonts.mono};
+    font-size: 0.88rem;
+  }
+
+  .period {
+    color: ${props => props.theme.colors.textSecondary};
+    font-size: 0.85rem;
+    margin: 0.35rem 0 0.8rem;
+  }
+
+  p {
+    color: ${props => props.theme.colors.textSecondary};
+    line-height: 1.7;
+    max-width: 760px;
+  }
+`;
+
 function About() {
   const technologies = [
-    'JavaScript (ES6+)',
-    'React',
-    'Node.js',
-    'Next.js',
+    'JavaScript e TypeScript',
+    'React e Next.js',
+    'Node.js, Express e NestJS',
     'Python',
-    'IA e RAG',
-    'Automações',
-    'Suporte e Infraestrutura'
+    'PostgreSQL, Supabase e SQLite',
+    'APIs e integrações',
+    'IA, RAG e LLMs',
+    'Suporte N1/N2 e infraestrutura'
   ];
 
   const listVariants = {
@@ -165,16 +216,16 @@ function About() {
               transition={{ duration: 0.5, delay: 0.2 }}
             >
               <p>
-                Olá! Meu nome é <span>Placido Francisco da Silva Junior</span>. Sou desenvolvedor Full Stack em formação e gosto de transformar problemas reais em soluções digitais simples de usar e fáceis de manter.
+                Olá! Meu nome é <span>Placido Francisco da Silva Junior</span>. Sou bacharel em Ciência da Computação e atuo com desenvolvimento Full Stack, suporte técnico e soluções digitais.
               </p>
               <p>
-                Como <span>Gestor da Naxel</span>, uno desenvolvimento web, automações e suporte de TI para ajudar pequenos negócios a organizar processos, ganhar produtividade e trabalhar com mais segurança.
+                Como <span>Gestor da Naxel</span>, uno desenvolvimento web, automações e suporte de TI para ajudar negócios a organizar processos, ganhar produtividade e trabalhar com mais segurança.
               </p>
               <p>
                 Minha experiência também passa por help desk, redes e apoio a projetos de sistemas de áudio, vídeo e integração. Essa vivência me ajuda a olhar tanto para o código quanto para quem usa a solução no dia a dia.
               </p>
               <p>
-                Na graduação em Ciência da Computação, desenvolvo o <span>Disque Tech Fácil</span>, um chatbot no WhatsApp voltado ao apoio digital de adultos 40+ em Itaparica. O projeto combina pesquisa, acessibilidade e tecnologia aplicada a uma necessidade concreta.
+                No meu TCC, desenvolvi o <span>Disque Tech Fácil</span>, um chatbot no WhatsApp voltado ao apoio digital de adultos 40+ em Itaparica. O projeto combina pesquisa, acessibilidade e tecnologia aplicada a uma necessidade concreta.
               </p>
               
               <TechList
@@ -197,9 +248,48 @@ function About() {
             viewport={{ once: true }}
             transition={{ duration: 0.5, delay: 0.3 }}
           >
-            <ProfileImage src="/imagens/naxel-logo-atualizada.jpeg" alt="Identidade visual da Naxel" />
+            <ProfileImage src="/imagens/placido-junior.png" alt="Retrato profissional de Placido Junior" />
           </ImageWrapper>
         </Content>
+
+        <ExperienceSection>
+          <SectionTitle
+            initial={{ opacity: 0, x: -20 }}
+            whileInView={{ opacity: 1, x: 0 }}
+            viewport={{ once: true }}
+          >
+            Experiência
+          </SectionTitle>
+          <ExperienceList>
+            <ExperienceItem initial={{ opacity: 0, y: 12 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }}>
+              <h3>Gestor da Naxel</h3>
+              <div className="company">Naxel Tech</div>
+              <div className="period">atuação atual</div>
+              <p>
+                Gestão e desenvolvimento de soluções digitais para negócios, incluindo sites, e-commerce, painéis,
+                automações, integrações, suporte técnico e infraestrutura de TI.
+              </p>
+            </ExperienceItem>
+            <ExperienceItem initial={{ opacity: 0, y: 12 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }}>
+              <h3>Estagiário de Pós-Engenharia</h3>
+              <div className="company">Absolut Technologies</div>
+              <div className="period">outubro de 2024 — novembro de 2025</div>
+              <p>
+                Suporte técnico e operacional ao time de engenharia, com organização de demandas e equipamentos,
+                testes e homologação de dispositivos, registro de ocorrências e consulta de documentação técnica em AutoCAD.
+              </p>
+            </ExperienceItem>
+            <ExperienceItem initial={{ opacity: 0, y: 12 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }}>
+              <h3>Estagiário em Suporte Técnico</h3>
+              <div className="company">Sindauto</div>
+              <div className="period">junho de 2023 — dezembro de 2023</div>
+              <p>
+                Atendimento N1 remoto e presencial, diagnóstico de incidentes em computadores, sistemas, impressoras e rede,
+                manutenção preventiva e corretiva, configuração de estações e controle de inventário de TI.
+              </p>
+            </ExperienceItem>
+          </ExperienceList>
+        </ExperienceSection>
       </AboutContainer>
     </Layout>
   );

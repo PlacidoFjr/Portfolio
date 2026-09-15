@@ -2,9 +2,9 @@ import { SiJavascript, SiReact, SiNodedotjs, SiNextdotjs, SiPython } from 'react
 import { FaHeadset, FaNetworkWired, FaRobot } from 'react-icons/fa';
 
 export const skills = [
-  { name: "Suporte Técnico", icon: FaHeadset, color: "#e8b45d" },
-  { name: "Infraestrutura", icon: FaNetworkWired, color: "#e8b45d" },
-  { name: "IA e RAG", icon: FaRobot, color: "#e8b45d" },
+  { name: "Suporte Técnico", icon: FaHeadset, color: "#64ffda" },
+  { name: "Infraestrutura", icon: FaNetworkWired, color: "#64ffda" },
+  { name: "IA e RAG", icon: FaRobot, color: "#64ffda" },
   { name: "JavaScript", icon: SiJavascript, color: "#F7DF1E" },
   { name: "React", icon: SiReact, color: "#61DAFB" },
   { name: "Node.js", icon: SiNodedotjs, color: "#339933" },

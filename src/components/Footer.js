@@ -9,7 +9,6 @@ const FooterContainer = styled.footer`
   flex-direction: column;
   align-items: center;
   gap: 2rem;
-  border-top: 1px solid rgba(232, 180, 93, 0.1);
 `;
 
 const SocialLinks = styled.div`
