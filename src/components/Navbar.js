@@ -10,9 +10,10 @@ const Nav = styled(motion.nav)`
   top: 0;
   width: 100%;
   padding: ${props => props.$scrolled ? '0.8rem 1rem' : '1.5rem 1rem'};
-  background: ${props => props.$scrolled ? 'rgba(10, 25, 47, 0.95)' : 'transparent'};
+  background: ${props => props.$scrolled ? 'rgba(7, 20, 38, 0.9)' : 'linear-gradient(180deg, rgba(7, 20, 38, 0.7), transparent)'};
   backdrop-filter: ${props => props.$scrolled ? 'blur(10px)' : 'none'};
-  box-shadow: ${props => props.$scrolled ? '0 10px 30px -10px rgba(2, 12, 27, 0.7)' : 'none'};
+  border-bottom: 1px solid ${props => props.$scrolled ? 'rgba(232, 180, 93, 0.12)' : 'transparent'};
+  box-shadow: ${props => props.$scrolled ? '0 18px 45px -30px rgba(0, 0, 0, 0.8)' : 'none'};
   transition: ${props => props.theme.transitions.default};
   z-index: 1000;
 `;
@@ -59,6 +60,16 @@ const NavLink = styled(Link)`
   &:hover::after {
     width: 100%;
   }
+`;
+
+const ContactLink = styled(NavLink)`
+  padding: 0.65rem 1rem;
+  margin-top: -0.65rem;
+  border: 1px solid rgba(232, 180, 93, 0.5);
+  border-radius: 999px;
+
+  &::after { display: none; }
+  &:hover { background: rgba(232, 180, 93, 0.1); }
 `;
 
 const MobileMenuButton = styled.button`
@@ -130,18 +141,20 @@ function Navbar() {
         <Logo />
 
         <NavLinks>
-          {navLinks.map((link) => (
-            <NavLink
+          {navLinks.map((link) => {
+            const LinkComponent = link.path === '/contact' ? ContactLink : NavLink;
+            return (
+            <LinkComponent
               key={link.path}
               to={link.path}
               $active={location.pathname === link.path ? 1 : 0}
             >
               {link.name}
-            </NavLink>
-          ))}
+            </LinkComponent>
+          )})}
         </NavLinks>
 
-        <MobileMenuButton onClick={() => setIsOpen(!isOpen)}>
+        <MobileMenuButton aria-label={isOpen ? 'Fechar menu' : 'Abrir menu'} aria-expanded={isOpen} onClick={() => setIsOpen(!isOpen)}>
           {isOpen ? <FaTimes /> : <FaBars />}
         </MobileMenuButton>
 

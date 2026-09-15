@@ -8,7 +8,9 @@ import { skills } from '../data/skills';
 const ProjectsContainer = styled.div`
   min-height: 100vh;
   padding: 8rem 2rem 4rem;
-  background: ${props => props.theme.colors.background};
+  background:
+    radial-gradient(circle at 85% 12%, rgba(232, 180, 93, 0.08), transparent 26rem),
+    ${props => props.theme.colors.background};
 `;
 
 const SectionTitle = styled(motion.h2)`
@@ -36,11 +38,19 @@ const ProjectsGrid = styled.div`
   margin: 0 auto;
 `;
 
+const Intro = styled(motion.p)`
+  max-width: 660px;
+  margin: -1.8rem auto 3rem;
+  color: ${props => props.theme.colors.textSecondary};
+  text-align: center;
+  line-height: 1.7;
+`;
+
 const ProjectCard = styled(motion.div)`
   background: ${props => props.theme.colors.backgroundLight};
   border-radius: 12px;
   overflow: hidden;
-  border: 1px solid rgba(100, 255, 218, 0.1);
+  border: 1px solid rgba(232, 180, 93, 0.12);
   height: 100%;
   display: flex;
   flex-direction: column;
@@ -48,7 +58,7 @@ const ProjectCard = styled(motion.div)`
 
   &:hover {
     transform: translateY(-10px);
-    box-shadow: 0 20px 30px -15px rgba(2, 12, 27, 0.7);
+    box-shadow: 0 24px 55px -30px rgba(0, 0, 0, 0.9);
     border-color: ${props => props.theme.colors.primary};
   }
 `;
@@ -57,7 +67,7 @@ const ProjectImage = styled.img`
   width: 100%;
   height: 200px;
   object-fit: cover;
-  border-bottom: 1px solid rgba(100, 255, 218, 0.1);
+  border-bottom: 1px solid rgba(232, 180, 93, 0.12);
 `;
 
 const ProjectContent = styled.div`
@@ -71,6 +81,15 @@ const ProjectTitle = styled.h3`
   color: ${props => props.theme.colors.primary};
   margin-bottom: 1rem;
   font-size: 1.5rem;
+`;
+
+const ProjectNumber = styled.span`
+  display: block;
+  margin-bottom: 0.7rem;
+  color: ${props => props.theme.colors.textSecondary};
+  font-family: ${props => props.theme.fonts.mono};
+  font-size: 0.72rem;
+  letter-spacing: 0.08em;
 `;
 
 const ProjectDescription = styled.p`
@@ -93,9 +112,9 @@ const Tag = styled.li`
   color: ${props => props.theme.colors.primary};
   font-family: ${props => props.theme.fonts.mono};
   font-size: 0.75rem;
-  background: rgba(100, 255, 218, 0.1);
-  padding: 0.2rem 0.6rem;
-  border-radius: 4px;
+  background: rgba(232, 180, 93, 0.1);
+  padding: 0.3rem 0.65rem;
+  border-radius: 999px;
 `;
 
 const ProjectLinks = styled.div`
@@ -134,7 +153,7 @@ const SkillCard = styled(motion.div)`
   padding: 1.5rem;
   background: ${props => props.theme.colors.backgroundLight};
   border-radius: 12px;
-  border: 1px solid rgba(100, 255, 218, 0.1);
+  border: 1px solid rgba(232, 180, 93, 0.12);
   transition: ${props => props.theme.transitions.default};
 
   &:hover {
@@ -158,8 +177,15 @@ function Projects() {
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.5 }}
         >
-          Meus Projetos
+          Projetos selecionados
         </SectionTitle>
+        <Intro
+          initial={{ opacity: 0, y: 10 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.5, delay: 0.1 }}
+        >
+          Uma seleção de produtos, pesquisas e experiências digitais em que tecnologia foi aplicada para resolver necessidades concretas.
+        </Intro>
 
         <ProjectsGrid>
           {projects.map((project, index) => (
@@ -170,8 +196,9 @@ function Projects() {
               viewport={{ once: true }}
               transition={{ duration: 0.5, delay: index * 0.1 }}
             >
-              <ProjectImage src={project.image} alt={project.title} />
+              <ProjectImage src={project.image} alt={project.title} loading="lazy" />
               <ProjectContent>
+                <ProjectNumber>PROJETO {String(index + 1).padStart(2, '0')}</ProjectNumber>
                 <ProjectTitle>{project.title}</ProjectTitle>
                 <ProjectDescription>{project.description}</ProjectDescription>
                 {project.tags && (
@@ -183,12 +210,12 @@ function Projects() {
                 )}
                 <ProjectLinks>
                   {project.github && project.github !== '#' && (
-                    <IconLink href={project.github} target="_blank" rel="noopener noreferrer" title="GitHub">
+                    <IconLink aria-label={`Ver código de ${project.title} no GitHub`} href={project.github} target="_blank" rel="noopener noreferrer" title="GitHub">
                       <FaGithub />
                     </IconLink>
                   )}
                   {project.live && project.live !== '#' && (
-                    <IconLink href={project.live} target="_blank" rel="noopener noreferrer" title="Ver Projeto">
+                    <IconLink aria-label={`Abrir ${project.title}`} href={project.live} target="_blank" rel="noopener noreferrer" title="Ver projeto">
                       <FaExternalLinkAlt />
                     </IconLink>
                   )}
@@ -205,7 +232,7 @@ function Projects() {
             viewport={{ once: true }}
             transition={{ duration: 0.5 }}
           >
-            Minhas Habilidades
+            Tecnologias e competências
           </SectionTitle>
           <SkillsGrid>
             {skills.map((skill, index) => (

@@ -9,6 +9,7 @@ const FooterContainer = styled.footer`
   flex-direction: column;
   align-items: center;
   gap: 2rem;
+  border-top: 1px solid rgba(232, 180, 93, 0.1);
 `;
 
 const SocialLinks = styled.div`
@@ -41,16 +42,16 @@ function Footer() {
     <FooterContainer>
       <Logo />
       <SocialLinks>
-        <SocialIcon href="https://github.com/PlacidoFjr" target="_blank" rel="noopener noreferrer">
+        <SocialIcon aria-label="GitHub" href="https://github.com/PlacidoFjr" target="_blank" rel="noopener noreferrer">
           <FaGithub />
         </SocialIcon>
-        <SocialIcon href="https://www.linkedin.com/in/placido-francisco-da-silva-junior-a09765242/" target="_blank" rel="noopener noreferrer">
+        <SocialIcon aria-label="LinkedIn" href="https://www.linkedin.com/in/placido-francisco-da-silva-junior-a09765242/" target="_blank" rel="noopener noreferrer">
           <FaLinkedin />
         </SocialIcon>
-        <SocialIcon href="https://www.instagram.com/placido_sjr/" target="_blank" rel="noopener noreferrer">
+        <SocialIcon aria-label="Instagram" href="https://www.instagram.com/placido_sjr/" target="_blank" rel="noopener noreferrer">
           <FaInstagram />
         </SocialIcon>
-        <SocialIcon href="mailto:placidojunior34@gmail.com">
+        <SocialIcon aria-label="E-mail" href="mailto:placidojunior34@gmail.com">
           <FaEnvelope />
         </SocialIcon>
       </SocialLinks>

@@ -1,8 +1,9 @@
-import { render, screen } from '@testing-library/react';
-import App from './App';
+import { projects } from './data/projects';
 
-test('renders learn react link', () => {
-  render(<App />);
-  const linkElement = screen.getByText(/learn react/i);
-  expect(linkElement).toBeInTheDocument();
+test('highlights the current portfolio projects', () => {
+  const projectNames = projects.map(project => project.title);
+
+  expect(projectNames).toContain('Naxel Tech');
+  expect(projectNames).toContain('Disque Tech Fácil');
+  expect(projectNames).toContain('Suporte Técnico TI');
 });

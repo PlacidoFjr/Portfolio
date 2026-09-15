@@ -1,10 +1,12 @@
 export const theme = {
   colors: {
-    background: '#0a192f',
-    backgroundLight: '#112240',
-    primary: '#64ffda',
-    text: '#ccd6f6',
-    textSecondary: '#8892b0',
+    background: '#071426',
+    backgroundLight: '#0d2038',
+    surface: '#102944',
+    primary: '#e8b45d',
+    primarySoft: '#f3d49a',
+    text: '#eef3f8',
+    textSecondary: '#a9b7c8',
     white: '#ffffff',
   },
   fonts: {
@@ -12,7 +14,7 @@ export const theme = {
     mono: "'Fira Code', 'Courier New', monospace",
   },
   transitions: {
-    default: 'all 0.3s cubic-bezier(0.645, 0.045, 0.355, 1)',
+    default: 'all 0.28s cubic-bezier(0.22, 1, 0.36, 1)',
   },
   breakpoints: {
     mobile: '480px',

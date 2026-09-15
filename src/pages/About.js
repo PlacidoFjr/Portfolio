@@ -32,7 +32,7 @@ const SectionTitle = styled(motion.h2)`
     display: block;
     width: 200px;
     height: 1px;
-    background: rgba(100, 255, 218, 0.2);
+    background: rgba(232, 180, 93, 0.22);
     margin-left: 1rem;
   }
 `;
@@ -83,6 +83,7 @@ const ImageWrapper = styled(motion.div)`
   position: relative;
   max-width: 300px;
   margin: 0 auto;
+  align-self: start;
 
   &::after {
     content: '';
@@ -106,12 +107,13 @@ const ImageWrapper = styled(motion.div)`
 
 const ProfileImage = styled.img`
   width: 100%;
-  border-radius: 4px;
-  filter: grayscale(100%) contrast(1);
+  aspect-ratio: 1;
+  object-fit: cover;
+  border-radius: 18px;
   transition: ${props => props.theme.transitions.default};
 
   &:hover {
-    filter: none;
+    transform: translateY(-4px);
   }
 `;
 
@@ -120,11 +122,11 @@ function About() {
     'JavaScript (ES6+)',
     'React',
     'Node.js',
-    'TypeScript',
-    'Zendesk Admin',
-    'Customer Experience',
-    'ITSM / ITIL',
-    'SLA Management'
+    'Next.js',
+    'Python',
+    'IA e RAG',
+    'Automações',
+    'Suporte e Infraestrutura'
   ];
 
   const listVariants = {
@@ -163,17 +165,16 @@ function About() {
               transition={{ duration: 0.5, delay: 0.2 }}
             >
               <p>
-                Olá! Meu nome é <span>Placido Francisco da Silva Junior</span> e sou um apaixonado por transformar processos através da tecnologia.
+                Olá! Meu nome é <span>Placido Francisco da Silva Junior</span>. Sou desenvolvedor Full Stack em formação e gosto de transformar problemas reais em soluções digitais simples de usar e fáceis de manter.
               </p>
               <p>
-                Atualmente, sou <span>Gestor na Orbe Insights</span>, onde lidero o desenvolvimento de soluções de conciliação inteligente para escritórios contábeis, 
-                focando em reduzir gargalos operacionais e escalar a produtividade através de automação.
+                Como <span>Gestor da Naxel</span>, uno desenvolvimento web, automações e suporte de TI para ajudar pequenos negócios a organizar processos, ganhar produtividade e trabalhar com mais segurança.
               </p>
               <p>
-                Além da gestão na Orbe, continuo impulsionando a <span>Naxel Tech</span>, provendo infraestrutura de TI estratégica para novos negócios.
+                Minha experiência também passa por help desk, redes e apoio a projetos de sistemas de áudio, vídeo e integração. Essa vivência me ajuda a olhar tanto para o código quanto para quem usa a solução no dia a dia.
               </p>
               <p>
-                Com sólida experiência em <span>Suporte Técnico e Customer Experience</span>, especializei-me na implementação e gestão de ferramentas de suporte como <span>Zendesk</span>, otimizando o atendimento através de fluxos de trabalho inteligentes, automações e análise de métricas (SLA, CSAT, NPS).
+                Na graduação em Ciência da Computação, desenvolvo o <span>Disque Tech Fácil</span>, um chatbot no WhatsApp voltado ao apoio digital de adultos 40+ em Itaparica. O projeto combina pesquisa, acessibilidade e tecnologia aplicada a uma necessidade concreta.
               </p>
               
               <TechList
@@ -196,7 +197,7 @@ function About() {
             viewport={{ once: true }}
             transition={{ duration: 0.5, delay: 0.3 }}
           >
-            <ProfileImage src="/logo192.png" alt="Profile" />
+            <ProfileImage src="/imagens/naxel-logo-atualizada.jpeg" alt="Identidade visual da Naxel" />
           </ImageWrapper>
         </Content>
       </AboutContainer>

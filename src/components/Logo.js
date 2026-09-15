@@ -45,7 +45,7 @@ const Logo = () => {
           {/* Hexagon Background */}
           <motion.path
             d="M50 5L93.3 30V80L50 105L6.7 80V30L50 5Z"
-            stroke="#64ffda"
+            stroke="#e8b45d"
             strokeWidth="5"
             initial={{ pathLength: 0, opacity: 0 }}
             animate={{ pathLength: 1, opacity: 1 }}
@@ -55,7 +55,7 @@ const Logo = () => {
           {/* Stylized P */}
           <motion.path
             d="M40 35V70 M40 35H55C60 35 63 38 63 43C63 48 60 51 55 51H40"
-            stroke="#64ffda"
+            stroke="#e8b45d"
             strokeWidth="6"
             strokeLinecap="round"
             strokeLinejoin="round"
@@ -69,7 +69,7 @@ const Logo = () => {
             cx="63"
             cy="70"
             r="5"
-            fill="#64ffda"
+            fill="#e8b45d"
             initial={{ scale: 0 }}
             animate={{ scale: [0, 1.2, 1] }}
             transition={{ delay: 2, duration: 0.5 }}
