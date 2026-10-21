@@ -72,15 +72,6 @@ export const projects = [
     tags: ['Chatbot', 'Suporte', 'Base de conhecimento', 'Em desenvolvimento']
   },
   {
-    title: 'Site da GM Psicologia',
-    description: 'Landing page responsiva para apresentar os serviços de psicologia e facilitar o contato com a clínica.',
-    image: '/imagens/gm-psicologia.svg',
-    category: 'Sites',
-    github: 'https://github.com/PlacidoFjr/projetogmpsicologa',
-    live: '',
-    tags: ['HTML', 'CSS', 'JavaScript', 'Site institucional']
-  },
-  {
     title: 'Villa Dolce Ateliê',
     description: 'Site de marca e catálogo para apresentar cestas afetivas e produtos artesanais, feito com React e Vite.',
     image: '/imagens/villa-dolce.jpeg',
