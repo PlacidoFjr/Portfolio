@@ -17,10 +17,10 @@ export const projects = [
   },
   {
     title: 'Paula Moura Arquitetura',
-    description: 'Site institucional para um escritório de arquitetura, com portfólio editorial de projetos, apresentação do escritório e canais de contato. Projeto em desenvolvimento.',
+    description: 'Site institucional para um escritório de arquitetura, com portfólio editorial de projetos, apresentação do escritório e canais de contato.',
     image: '/imagens/paula-moura-arquitetura.png',
     github: 'https://github.com/PlacidoFjr/PAULA-ARQUI',
-    live: '',
+    live: 'https://paula-arqui.vercel.app/',
     tags: ['Next.js', 'React', 'TypeScript', 'Arquitetura']
   },
   {
@@ -30,14 +30,6 @@ export const projects = [
     github: 'https://github.com/PlacidoFjr/LEVELFIT',
     live: 'https://levelfit-api.vercel.app/',
     tags: ['Next.js', 'TypeScript', 'NestJS', 'Prisma', 'PostgreSQL']
-  },
-  {
-    title: 'Suporte Técnico TI',
-    description: 'Portal de atendimento para diagnóstico e suporte técnico remoto ou presencial, criado para tornar a solicitação de ajuda mais simples.',
-    image: '/imagens/suporte-tecnico.png',
-    github: 'https://github.com/PlacidoFjr',
-    live: 'https://suportepjr.vercel.app/',
-    tags: ['Suporte técnico', 'UX', 'Vercel']
   },
   {
     title: 'Mary Studio Commerce',

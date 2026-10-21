@@ -5,5 +5,7 @@ test('highlights the current portfolio projects', () => {
 
   expect(projectNames).toContain('Naxel Tech');
   expect(projectNames).toContain('Disque Tech Fácil');
-  expect(projectNames).toContain('Suporte Técnico TI');
+  expect(projectNames).toContain('Paula Moura Arquitetura');
+  expect(projectNames).toContain('LevelFit');
+  expect(projectNames).not.toContain('Suporte Técnico TI');
 });
