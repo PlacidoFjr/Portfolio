@@ -19,7 +19,7 @@ export const projects = [
     title: 'Paula Moura Arquitetura',
     description: 'Site institucional para um escritório de arquitetura, com portfólio editorial de projetos, apresentação do escritório e canais de contato. Projeto em desenvolvimento.',
     image: '/imagens/paula-moura-arquitetura.png',
-    github: '',
+    github: 'https://github.com/PlacidoFjr/PAULA-ARQUI',
     live: '',
     tags: ['Next.js', 'React', 'TypeScript', 'Arquitetura']
   },
