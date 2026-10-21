@@ -16,6 +16,22 @@ export const projects = [
     tags: ['Web', 'Automação', 'Consultoria', 'Suporte de TI']
   },
   {
+    title: 'Paula Moura Arquitetura',
+    description: 'Site institucional para um escritório de arquitetura, com portfólio editorial de projetos, apresentação do escritório e canais de contato. Projeto em desenvolvimento.',
+    image: '/imagens/paula-moura-arquitetura.png',
+    github: '',
+    live: '',
+    tags: ['Next.js', 'React', 'TypeScript', 'Arquitetura']
+  },
+  {
+    title: 'LevelFit',
+    description: 'Aplicação fitness gamificada para acompanhar treinos, alimentação, hidratação e hábitos. Inclui experiência web e API com autenticação, progresso e missões diárias.',
+    image: '/imagens/levelfit-preview.png',
+    github: 'https://github.com/PlacidoFjr/LEVELFIT',
+    live: 'https://levelfit-api.vercel.app/',
+    tags: ['Next.js', 'TypeScript', 'NestJS', 'Prisma', 'PostgreSQL']
+  },
+  {
     title: 'Suporte Técnico TI',
     description: 'Portal de atendimento para diagnóstico e suporte técnico remoto ou presencial, criado para tornar a solicitação de ajuda mais simples.',
     image: '/imagens/suporte-tecnico.png',
